@@ -151,6 +151,30 @@ function checkTimeLoss() {
   if (ms <= 0) endGame(other(cur), "\u65f6\u95f4\u8017\u5c3d");
 }
 
+
+function openModal() {
+  const el = $("#modalOverlay");
+  if (!el) return;
+  el.classList.remove("hidden");
+  el.setAttribute("aria-hidden", "false");
+  el.setAttribute("aria-modal", "true");
+  const btn = $("#modalClose");
+  if (btn) {
+    requestAnimationFrame(function () {
+      btn.focus();
+    });
+  }
+}
+
+function closeModal() {
+  const el = $("#modalOverlay");
+  if (!el) return;
+  const back = $("#btnNewGame");
+  if (back) back.focus();
+  el.setAttribute("aria-hidden", "true");
+  el.classList.add("hidden");
+}
+
 function endGame(winner, msg) {
   game.over = true;
   game.locked = true;
@@ -159,7 +183,7 @@ function endGame(winner, msg) {
   $("#board").classList.add("board--locked");
   $("#modalMessage").textContent =
     msg || (winner === "red" ? "\u7ea2\u65b9\u83b7\u80dc" : "\u84dd\u65b9\u83b7\u80dc");
-  $("#modalOverlay").classList.remove("hidden");
+  openModal();
 }
 
 function segH(r, c) {
@@ -416,7 +440,7 @@ function onClaimWin() {
   if (game.over || !game.lastMove) return;
   if (!checkWinClaim()) {
     $("#modalMessage").textContent = "\u672a\u68c0\u6d4b\u5230\u548c\u4e3a10\u7684\u8fde\u7ebf";
-    $("#modalOverlay").classList.remove("hidden");
+    openModal();
     game.penaltyUntil[game.turn] = performance.now() + 5000;
     return;
   }
@@ -430,7 +454,7 @@ function onClaimWin() {
   if (piece) piece.classList.add("fx-win");
   $("#modalMessage").textContent =
     "\u5341\u8fde\u80dc\uff01" + (w === "red" ? "\u7ea2\u65b9" : "\u84dd\u65b9") + "\u83b7\u80dc";
-  $("#modalOverlay").classList.remove("hidden");
+  openModal();
 }
 
 function init() {
@@ -449,7 +473,7 @@ function init() {
   $("#btnNewGame").addEventListener("click", newGame);
   $("#btnClaimWin").addEventListener("click", onClaimWin);
   $("#modalClose").addEventListener("click", function () {
-    $("#modalOverlay").classList.add("hidden");
+    closeModal();
   });
   $("#timePreset").addEventListener("change", function () {
     $("#customTimeRow").classList.toggle("hidden", $("#timePreset").value !== "custom");
