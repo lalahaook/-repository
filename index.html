@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>双人对战策略棋 · 十连胜</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="app" class="app" data-screen-mode="1" data-battle-mode="same">
+    <header class="top-bar">
+      <h1 class="title">双人对战策略棋</h1>
+      <div class="mode-picks">
+        <label>同屏
+          <select id="battleMode">
+            <option value="same">同屏对战</option>
+            <option value="dual">双机对战</option>
+          </select>
+        </label>
+        <label class="same-only">同屏布局
+          <select id="screenMode">
+            <option value="1">双方正向 · 红右下 / 蓝左下</option>
+            <option value="2">蓝方旋转 180°</option>
+          </select>
+        </label>
+        <label>时间
+          <select id="timePreset">
+            <option value="120">120 秒 + 10 秒/步</option>
+            <option value="custom">自定义</option>
+            <option value="unlimited">无限制</option>
+          </select>
+        </label>
+        <span id="customTimeRow" class="custom-time hidden">
+          <input type="number" id="baseSec" min="30" max="3600" value="120" /> 秒 +
+          <input type="number" id="incSec" min="0" max="120" value="10" /> 秒/步
+        </span>
+        <button type="button" id="btnNewGame" class="btn">新对局</button>
+      </div>
+    </header>
+
+    <div class="game-wrap">
+      <aside class="panel panel--blue" id="panelBlue" data-player="blue">
+        <div class="panel-head">
+          <span class="player-name">蓝方</span>
+          <span class="clock" id="clockBlue">120</span>
+        </div>
+        <div class="queue" id="queueBlue" aria-label="蓝方出棋列"></div>
+      </aside>
+
+      <main class="board-wrap">
+        <div id="firstPlayerBanner" class="banner hidden" role="status"></div>
+        <div id="board" class="board" aria-label="15 乘 15 棋盘"></div>
+        <p class="hint" id="statusText">准备开始：点击「新对局」</p>
+      </main>
+
+      <aside class="panel panel--red" id="panelRed" data-player="red">
+        <div class="panel-head">
+          <span class="player-name">红方</span>
+          <span class="clock" id="clockRed">120</span>
+        </div>
+        <div class="queue" id="queueRed" aria-label="红方出棋列"></div>
+      </aside>
+    </div>
+
+    <footer class="bottom-bar">
+      <button type="button" id="btnClaimWin" class="btn btn--gold" disabled>我赢了</button>
+    </footer>
+  </div>
+
+  <div id="modalOverlay" class="modal-overlay hidden" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true">
+      <p id="modalMessage"></p>
+      <button type="button" id="modalClose" class="btn">确定</button>
+    </div>
+  </div>
+
+  <script defer src="js/game.js"></script>
+</body>
+</html>
