@@ -37,7 +37,26 @@
         <button type="button" id="btnNewGame" class="btn">新对局</button>
       </div>
     </header>
-
+<!-- 微信遮罩层开始 -->
+<div id="wechat-tip" class="wechat-tip">
+  <div class="wechat-tip-content">
+    <!-- 这里的箭头符号可以直接用，也可以替换成图片 -->
+    <div class="wechat-arrow">↗️</div>
+    <h2>请使用浏览器打开</h2>
+    <p>为了获得最佳体验，请勿在微信内直接访问</p>
+    <p>请点击右上角 <strong>...</strong> 选择 <strong>在浏览器打开</strong></p>
+  </div>
+</div>
+<!-- 微信遮罩层结束 -->
+<!-- 新增：横屏提示遮罩层 -->
+<div id="landscape-tip" class="landscape-tip">
+  <div class="landscape-content">
+    <div class="rotate-icon">📱</div>
+    <h2>请旋转手机</h2>
+    <p>为了获得最佳体验，请使用横屏模式</p>
+  </div>
+</div>
+<!-- 你的游戏主代码 (保持原有的结构不变) -->
     <div class="game-wrap">
       <aside class="panel panel--blue" id="panelBlue" data-player="blue">
         <div class="panel-head">

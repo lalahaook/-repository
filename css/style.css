@@ -55,7 +55,7 @@ body {
   flex: 1;
   display: flex;
   flex-direction: row;
-  align-items: stretch;
+  align-items: center/*原来为：stretch*/;
   justify-content: center;
   gap: 1rem;
   min-height: 0;
@@ -68,15 +68,19 @@ body {
   align-items: stretch;
   justify-items: center;
 }
-.app[data-battle-mode="same"][data-screen-mode="1"] #panelBlue { grid-area: blue; align-self: end; justify-self: start; }
+.app[data-battle-mode="same"][data-screen-mode="1"] #panelBlue { grid-area: blue; align-self: center; justify-self: start; }
 .app[data-battle-mode="same"][data-screen-mode="1"] .board-wrap { grid-area: board; }
-.app[data-battle-mode="same"][data-screen-mode="1"] #panelRed { grid-area: red; align-self: end; justify-self: end; }
+.app[data-battle-mode="same"][data-screen-mode="1"] #panelRed { grid-area: red; align-self: center; justify-self: end; }
 .app[data-battle-mode="same"][data-screen-mode="1"] .bottom-bar { grid-area: bottom; justify-self: center; }
 .app[data-battle-mode="same"][data-screen-mode="2"] #panelBlue {
   transform: rotate(180deg);
   transform-origin: center center;
 }
-.app[data-battle-mode="same"][data-screen-mode="2"] #panelBlue .queue { flex-direction: column-reverse; }
+.app[data-battle-mode="same"][data-screen-mode="2"] #panelBlue .queue { flex-direction: column-reverse; /* 让每个棋子也旋转180度，保证图案方向正确 */
+  transform: rotate(180deg);
+  /* 调整间距和对齐，避免旋转后错位 */
+  gap: 6px;
+  align-items: center;}
 .app[data-battle-mode="dual"] .bottom-bar {
   position: fixed;
   bottom: 0.75rem;
@@ -92,6 +96,13 @@ body {
   border-radius: 10px;
   background: #252a32;
   border: 1px solid #3d4450;
+  /* 确保没有 height: 100% 或者 height: 100vh */
+  height: auto; 
+  
+  /* 保持宽度固定 */
+  width: 200px; /* 或者 flex: 0 0 200px */
+  
+  
 }
 .panel-head { display: flex; flex-direction: column; align-items: center; gap: 0.25rem; margin-bottom: 0.5rem; font-size: 0.8rem; }
 .player-name { font-weight: 600; }
@@ -207,4 +218,120 @@ body {
 @media (max-width: 900px) {
   :root { --cell-size: 28px; }
   .game-wrap { flex-wrap: wrap; }
+}
+/* --- 新增代码开始 --- */
+
+/* 微信提示遮罩层样式 */
+.wechat-tip {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85); /* 半透明黑色背景 */
+  z-index: 9999; /* 确保层级最高，盖住所有内容 */
+  display: block;             /* ✅ 改为普通块级元素 */
+  padding-top: 20vh;         /* ✅ 添加顶部内边距，将内容推下去一点 */
+  text-align: center;        /* ✅ 让内容水平居中 */
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.wechat-tip-content {
+  text-align: center;
+  padding: 20px;
+  max-width: 80%;
+}
+
+.wechat-arrow {
+  font-size: 50px;
+  margin-bottom: 20px;
+  animation: bounce 1.5s infinite; /* 简单的跳动动画 */
+}
+
+.wechat-tip h2 {
+  margin: 10px 0;
+  font-size: 24px;
+  color: #ff9900; /* 醒目的橙色 */
+}
+
+.wechat-tip p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #ddd;
+}
+
+.wechat-tip strong {
+  color: #fff;
+  font-weight: bold;
+}
+
+/* 简单的上下跳动动画 */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* 横屏提示遮罩层基础样式 (默认隐藏) */
+.landscape-tip {
+  display: none; /* 默认不显示 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000; /* 黑色背景 */
+  z-index: 10000; /* 层级最高，盖住微信提示层 */
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+}
+
+/* 横屏提示遮罩层内容区域 */
+.landscape-content {
+  text-align: center;
+  /* 关键：增加内边距，让内容区域更大更突出 */
+  padding: 40px; 
+}
+
+/* 旋转图标 (箭头) */
+.landscape-content .rotate-icon {
+  font-size: 150px; /* 放大箭头图标，从 100px 调整为 150px */
+  margin-bottom: 40px; /* 增加间距，从 30px 调整为 40px */
+  animation: rotate-phone 2s infinite linear; 
+  display: block; /* 确保图标独占一行，居中 */
+}
+
+/* 标题文字 */
+.landscape-content h2 {
+  font-size: 48px; /* 放大标题字体，从 32px 调整为 48px */
+  margin: 20px 0; /* 调整间距，从 15px 调整为 20px */
+  color: #ff9900; /* 保持醒目的颜色 */
+}
+
+/* 提示文字 */
+.landscape-content p {
+  font-size: 28px; /* 放大提示文字，从 20px 调整为 28px */
+  line-height: 1.8; /* 增加行高，提升可读性 */
+  color: #ddd; /* 保持文字颜色 */
+  margin: 15px 0; /* 调整间距，从 10px 调整为 15px */
+  max-width: 80%; /* 限制文字宽度，避免过长 */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@keyframes rotate-phone {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(-90deg); }
+  50% { transform: rotate(-90deg); }
+  75% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* --- 关键代码：仅在竖屏模式下显示该遮罩 --- */
+@media screen and (orientation: portrait) {
+  .landscape-tip {
+    display: flex; /* 竖屏时强制显示 */
+  }
 }

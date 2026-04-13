@@ -493,3 +493,59 @@ if (document.readyState === "loading") {
 } else {
   init();
 }
+// 新增代码
+
+(function initApp() {
+  // 1. 获取 DOM 元素
+  var wechatTip = document.getElementById('wechat-tip');
+  var landscapeTip = document.getElementById('landscape-tip');
+  
+  // 2. 检测是否为微信环境
+  var ua = navigator.userAgent.toLowerCase();
+  var isWechat = ua.indexOf('micromessenger') !== -1;
+
+  // --- 核心逻辑开始 ---
+
+  if (isWechat) {
+    // 【情况 A：在微信里】
+    // 1. 显示微信提示
+    if (wechatTip) wechatTip.style.display = 'flex';
+    
+    // 2. 强制隐藏横屏提示（防止冲突）
+    if (landscapeTip) landscapeTip.style.display = 'none';
+    
+    // 3. 不初始化游戏，直接结束函数
+    return; 
+  }
+
+  // --- 如果不是微信，继续执行下面的逻辑 ---
+
+  // 1. 确保微信提示已隐藏
+  if (wechatTip) wechatTip.style.display = 'none';
+
+  // 2. 定义一个函数来检查屏幕方向
+  function checkOrientation() {
+    // 判断逻辑：如果 高度 > 宽度，说明是竖屏
+    var isPortrait = window.innerHeight > window.innerWidth;
+
+    if (isPortrait) {
+      // 【情况 B：在浏览器里，且是竖屏】
+      // 显示“请旋转手机”遮罩
+      if (landscapeTip) landscapeTip.style.display = 'flex';
+    } else {
+      // 【情况 C：在浏览器里，且是横屏】
+      // 隐藏遮罩，显示游戏
+      if (landscapeTip) landscapeTip.style.display = 'none';
+      
+      // 这里可以调用你的游戏初始化函数
+      // initBoard(); 
+    }
+  }
+
+  // 3. 初始化时立即执行一次检查
+  checkOrientation();
+
+  // 4. 监听窗口大小变化（当用户旋转手机时触发）
+  window.addEventListener('resize', checkOrientation);
+
+})();
