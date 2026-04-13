@@ -453,7 +453,7 @@ function onClaimWin() {
   );
   if (piece) piece.classList.add("fx-win");
   $("#modalMessage").textContent =
-    "\u5341\u8fde\u80dc\uff01" + (w === "red" ? "\u7ea2\u65b9" : "\u84dd\u65b9") + "\u83b7\u80dc";
+    (w === "red" ? "\u7ea2\u65b9" : "\u84dd\u65b9") + "\u83b7\u80dc\uff01";
   openModal();
 }
 
