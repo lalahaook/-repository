@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>2. 欢聚一桌 六六阵（完整示例版）</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--main:#e63946;--sub:#457b9d;--light:#f9fbfc;--dark:#1d3557;--radius:16px;--shadow:0 8px 30px rgba(0,0,0,0.08)}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:var(--light);color:var(--dark);line-height:1.8;padding:20px;max-width:820px;margin:0 auto;padding-bottom:80px}
+a{text-decoration:none}
+.back{display:inline-flex;align-items:center;gap:6px;color:var(--main);font-weight:600;margin-bottom:16px;font-size:16px}
+h1{font-size:26px;text-align:center;color:var(--main);margin:20px 0 30px;font-weight:700}
+h3{font-size:18px;font-weight:600;margin:20px 0 10px;color:var(--sub)}
+p{font-size:16px;margin-bottom:12px}
+ul,ol{padding-left:24px;margin:14px 0}
+li{margin-bottom:10px;font-size:16px}
+.box{background:#fff;border-radius:var(--radius);padding:22px 24px;margin:16px 0;box-shadow:var(--shadow)}
+.example{background:#fff5f5;border-left:4px solid #ff6b6b;padding:14px 18px;border-radius:10px;margin:12px 0;font-size:15px}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← 返回目录</a>
+<h1>玩法二：欢聚一桌 六六阵</h1>
+
+<div class="box">
+<h3>游戏人数</h3>
+<p>2人及以上</p>
+</div>
+
+<div class="box">
+<h3>游戏目标</h3>
+<p>轮流出棋构建棋局，每轮出棋获得分数，总分最高者获胜。</p>
+</div>
+
+<div class="box">
+<h3>游戏准备</h3>
+<p>将全部108颗棋子（6色6点数，同款各3颗）点朝下打乱，每3颗堆成一叠，呈直线围成一圈（类似麻将摆法）。</p>
+</div>
+
+<div class="box">
+<h3>游戏流程</h3>
+<ol>
+<li>每人拿取6颗棋子</li>
+<li>首次出棋至少2颗，同色或同点数，摆成直线作为初始棋局</li>
+<li>轮流出棋1-6颗，同色/同点数、直线相连、与棋局边相接</li>
+<li>出棋后补棋，保持6颗</li>
+<li>棋耗尽后，先出完手牌者结束游戏</li>
+</ol>
+</div>
+
+<div class="box">
+<h3>计分规则</h3>
+<ul>
+<li>本轮棋子经过的每条直线：棋子数=分数</li>
+<li>6颗连成一线=“六六”，翻倍为12分</li>
+<li>无法出棋得0分，可换3颗棋</li>
+<li>先出完手牌+6分</li>
+</ul>
+</div>
+
+<div class="example">
+<h4>📌 计分示例（说明书原文完整保留）</h4>
+<p>玩家A出四颗棋子 → 得4分</p>
+<p>玩家B出两颗棋子 → 得7分：5+2=7</p>
+<p>玩家C出三颗棋子 → 得17分：12+2+3=17</p>
+<p>玩家D出三颗棋子 → 得7分：4+3=7</p>
+<p>玩家A出两颗棋子 → 得6分：4+2=6</p>
+</div>
+</body></html>

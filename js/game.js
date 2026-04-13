@@ -1,5 +1,5 @@
-const GRID = 15;
-const CENTER = 7;
+const GRID = 13;
+const CENTER = 6;
 const $ = (s) => document.querySelector(s);
 
 function shuffleInPlace(a) {

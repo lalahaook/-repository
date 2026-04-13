@@ -35,16 +35,33 @@
           <input type="number" id="incSec" min="0" max="120" value="10" /> 秒/步
         </span>
         <button type="button" id="btnNewGame" class="btn">新对局</button>
-      </div>
-    </header>
+      <!-- 新增玩法说明链接 -->
+ <a href="https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&__biz=MjM5NzY0Nzg5Mg==&scene=1&album_id=4366616666248052758&count=3#wechat_redirect" 
+ target="_blank" 
+ style="color: #9aa0a6; font-size: 0.875rem; text-decoration: none; margin-left: 10px;"
+ title="六六齐玩法说明">六六齐玩法说明</a>
+ <!--ref="./rule/index.html" style="display:inline-block; padding:12px 20px; background:#c7000b; color:#fff; border-radius:10px; text-decoration:none; margin:10px 0; font-size:16px;">
+  📖 六六齐玩法说明
+  </a>-->
+ </div>
+</header>
+
 <!-- 微信遮罩层开始 -->
 <div id="wechat-tip" class="wechat-tip">
   <div class="wechat-tip-content">
     <!-- 这里的箭头符号可以直接用，也可以替换成图片 -->
     <div class="wechat-arrow">↗️</div>
     <h2>请使用浏览器打开</h2>
-    <p>为了获得最佳体验，请勿在微信内直接访问</p>
+    <p>啦啦好温馨提示<br>为了获得最佳体验，请勿在微信内直接访问</p>
     <p>请点击右上角 <strong>...</strong> 选择 <strong>在浏览器打开</strong></p>
+  <!-- 新增底部图片和文字 -->
+  <div class="wechat-bottom-info">
+    <img src="./lalahao.jpg" alt="六六齐十一种玩法说明及购买链接" 
+         style="width: 150px; height: 150px; margin: 20px auto; display: block; border-radius: 8px;">
+    <p style="font-size: 14px; color: #ccc; text-align: center; margin-top: 10px;">
+      六六齐十一种玩法说明及购买链接<br>按住图片即可进入公众号查看
+    </p>
+  </div>
   </div>
 </div>
 <!-- 微信遮罩层结束 -->
@@ -53,7 +70,14 @@
   <div class="landscape-content">
     <div class="rotate-icon">📱</div>
     <h2>请旋转手机</h2>
-    <p>为了获得最佳体验，请使用横屏模式</p>
+    <p>啦啦好温馨提示<br>为了获得最佳体验，请使用横屏模式</p>
+    <div class="wechat-bottom-info">
+      <img src="./lalahao.jpg" alt="六六齐十一种玩法说明及购买链接" 
+           style="width: 150px; height: 150px; margin: 20px auto; display: block; border-radius: 8px;">
+      <p style="font-size: 14px; color: #ccc; text-align: center; margin-top: 10px;">
+        六六齐十一种玩法说明及购买链接<br>保存图片微信扫一扫即可查看
+      </p>
+    </div>
   </div>
 </div>
 <!-- 你的游戏主代码 (保持原有的结构不变) -->
@@ -68,7 +92,7 @@
 
       <main class="board-wrap">
         <div id="firstPlayerBanner" class="banner hidden" role="status"></div>
-        <div id="board" class="board" aria-label="15 乘 15 棋盘"></div>
+        <div id="board" class="board" aria-label="13 乘 13 棋盘"></div>
         <p class="hint" id="statusText">准备开始：点击「新对局」</p>
       </main>
 
@@ -82,7 +106,7 @@
     </div>
 
     <footer class="bottom-bar">
-Update modal dialog accessibility by adding aria-labelledby attribute      <button type="button" id="btnClaimWin" class="btn btn--gold" disabled>我赢了</button>
+玩家获胜时需要主动点击      <button type="button" id="btnClaimWin" class="btn btn--gold" disabled>我赢了</button>
     </footer>
   </div>
 
